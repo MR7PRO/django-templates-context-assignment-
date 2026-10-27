@@ -1,6 +1,6 @@
 from datetime import date
 from django.shortcuts import render
-
+from .models import StudentProfile
 def index(request):
     context = {
         'first_name': 'ayham',
@@ -12,3 +12,12 @@ def index(request):
     }
 
     return render(request, 'pages/index.html', context)
+
+
+def home(request):
+    students = StudentProfile.objects.all()
+
+    context = {
+        'students': students
+    }
+    return render(request, 'pages/home.html', context)
